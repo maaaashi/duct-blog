@@ -1,0 +1,18 @@
+{:duct.profile/base
+ {:duct.core/project-ns duct-blog
+  
+  :duct-blog.handler.system/ping {}
+
+  :duct.router/ataraxy
+   {:routes   {"/v1" {"/systems" {[:get "/ping"] [:system/ping]}}}
+    :handlers {:system/ping #ig/ref :duct-blog.handler.system/ping}}}
+ 
+ 
+ 
+ :duct.profile/dev   #duct/include "dev"
+ :duct.profile/local #duct/include "local"
+ :duct.profile/prod  {}
+
+ :duct.module/logging {}
+ :duct.module.web/api
+ {}}
