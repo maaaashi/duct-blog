@@ -2,13 +2,16 @@
  {:duct.core/project-ns duct-blog
   
   :duct-blog.handler.system/ping {}
+  :duct-blog.handler.blogs/getBlogs {}
 
   :duct.router/ataraxy
-   {:routes   {"/v1" {"/systems" {[:get "/ping"] [:system/ping]}}}
-    :handlers {:system/ping #ig/ref :duct-blog.handler.system/ping}}}
+   {:routes   {"/v1" {"/systems" {[:get "/ping"] [:system/ping]}
+                      [:get "/blogs"] [:blogs/getBlogs]}}
+    :handlers {:system/ping #ig/ref :duct-blog.handler.system/ping
+               :blogs/getBlogs #ig/ref :duct-blog.handler.blogs/getBlogs}},
+  }
  
- 
- 
+  
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
  :duct.profile/prod  {}
